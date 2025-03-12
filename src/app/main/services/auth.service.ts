@@ -9,12 +9,13 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBj1vvXI8VUMvYCd_0PCtdVIZh70n4iYEA',
-  authDomain: 'joindb-4dd40.firebaseapp.com',
-  projectId: 'joindb-4dd40',
-  storageBucket: 'joindb-4dd40.firebasestorage.app',
-  messagingSenderId: '550188192810',
-  appId: '1:550188192810:web:2df3a711daf5ca6bb95f53',
+  apiKey: 'AIzaSyA5YTqiC_EGxswFAxbcebfWK1ac7iQr_d8',
+  authDomain: 'join-94775.firebaseapp.com',
+  projectId: 'join-94775',
+  storageBucket: 'join-94775.firebasestorage.app',
+  messagingSenderId: '1022981649905',
+  appId: '1:1022981649905:web:f6b1e81b79af38a2cc4050',
+  measurementId: 'G-K6Y4LFGZD4',
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
