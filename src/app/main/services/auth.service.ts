@@ -23,7 +23,7 @@ export class AuthService {
 
   constructor() {}
 
-  auth = inject(Auth)
+  auth = inject(Auth);
 
   /**
    * Registers a new user with email, password, and name.
@@ -90,9 +90,6 @@ export class AuthService {
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        // console.log('auth Service login error');
-        // console.log(email, pw);
-        // console.log(errorCode, errorMessage);
         return false;
       });
   }

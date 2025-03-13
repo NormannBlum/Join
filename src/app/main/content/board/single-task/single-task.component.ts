@@ -23,22 +23,22 @@ import { AddTaskComponent } from '../../add-task/add-task.component';
 export class SingleTaskComponent {
   @Input() task!: Task;
 
-   /** Task State */
-   tasks: Task[] = [];
-   selectedTask: Task | null = null;
-   selectedContacts: any[] = [];
- 
-   /** UI State */
-   isOverlayOpen: boolean = false;
-   isClosing: boolean = false;
- 
-   /** Injected Services */
-   constructor(
-     public taskService: TaskServiceService,
-     public contactService: ContactsService
-   ) {
-     this.tasks = this.taskService.todoList;
-   }
+  /** Task State */
+  tasks: Task[] = [];
+  selectedTask: Task | null = null;
+  selectedContacts: any[] = [];
+
+  /** UI State */
+  isOverlayOpen: boolean = false;
+  isClosing: boolean = false;
+
+  /** Injected Services */
+  constructor(
+    public taskService: TaskServiceService,
+    public contactService: ContactsService
+  ) {
+    this.tasks = this.taskService.todoList;
+  }
 
   /**
    * Opens the overlay for a specific task.
@@ -156,9 +156,6 @@ export class SingleTaskComponent {
    */
   updateSubtaskCompleted(): void {
     if (this.selectedTask && this.taskService.hasBeenUpdated) {
-      // console.log(this.selectedTask);
-      // console.log(this.taskService.whatIsTheType);
-      // console.log(this.selectedTask.subtasks);
       if (this.selectedTask.id && this.selectedTask.description) {
         this.taskService.updateTask(
           this.selectedTask.id,
