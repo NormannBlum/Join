@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -7,19 +8,6 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyA5YTqiC_EGxswFAxbcebfWK1ac7iQr_d8',
-  authDomain: 'join-94775.firebaseapp.com',
-  projectId: 'join-94775',
-  storageBucket: 'join-94775.firebasestorage.app',
-  messagingSenderId: '1022981649905',
-  appId: '1:1022981649905:web:f6b1e81b79af38a2cc4050',
-  measurementId: 'G-K6Y4LFGZD4',
-};
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +23,8 @@ export class AuthService {
 
   constructor() {}
 
+  auth = inject(Auth)
+
   /**
    * Registers a new user with email, password, and name.
    * @param {string} email - The email address of the new user.
@@ -42,15 +32,15 @@ export class AuthService {
    * @param {string} name - The display name of the new user.
    */
   signUp(email: string, pw: string, name: string): void {
-    createUserWithEmailAndPassword(auth, email, pw)
+    createUserWithEmailAndPassword(this.auth, email, pw)
       .then((userCredential) => {
         const user = userCredential.user;
 
         // console.log('auth Service create works');
         // console.log(email, pw, name);
 
-        if (auth.currentUser) {
-          updateProfile(auth.currentUser, {
+        if (this.auth.currentUser) {
+          updateProfile(this.auth.currentUser, {
             displayName: name,
           })
             .then(() => {
@@ -85,7 +75,7 @@ export class AuthService {
    * @returns {Promise<boolean>} A promise resolving to `true` if login succeeds, otherwise `false`.
    */
   login(email: string, pw: string): Promise<boolean> {
-    return signInWithEmailAndPassword(auth, email, pw)
+    return signInWithEmailAndPassword(this.auth, email, pw)
       .then((userCredential) => {
         const user = userCredential.user;
         this.name = user.displayName ?? '';
@@ -111,7 +101,7 @@ export class AuthService {
    * Logs out the currently authenticated user.
    */
   logout(): void {
-    signOut(auth)
+    signOut(this.auth)
       .then(() => {
         // console.log('User wurde ausgeloggt');
         this.isUserLoggedIn = false;
