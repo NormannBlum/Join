@@ -7,7 +7,6 @@
   />
 
   <!-- <div class="header-section"></div> -->
-
   @if (isContentVisible) {
   <div class="login-section">
     <h1>Log in</h1>
@@ -72,6 +71,7 @@
           }
         </div>
       </div>
+      
       <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
       @if(loginAttempted && (eMailPattern.test(this.email) != true ||
       pwPattern.test(this.password) != true) ) {
